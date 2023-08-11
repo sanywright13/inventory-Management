@@ -1,0 +1,18 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %} Log Out User{% endblock title %}
+
+{% block bodyContent %}
+
+<div class="row  justify-content-center">
+    <div class="col-md-4 mt-5">
+        <h1>You Are Log Out </h1>
+<div><strong class="text-bold">log In to Your Account<a href="{% url 'inventory:login' %}"> Sign In</a> </strong></div>
+<div><small class="text-muted">Need an accout ?<a href="{% url 'inventory:signup' %}">Sign up</a></small></div>
+
+
+</div>
+
+
+</div>
+{% endblock bodyContent%}

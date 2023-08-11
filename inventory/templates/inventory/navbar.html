@@ -6,11 +6,23 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
-       
+       {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'inventory:signup'%}">Sign up</a>
+{{ user.username }}       
+   </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'inventory:logout'%}">Log Out</a>
           </li>
-      
+      {% else %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'inventory:login' %}">Sign In</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'inventory:signup' %}"> Sign Up </a>
+</a>
+</li>
+      {% endif %}
         </ul>
       </div>
     </div>

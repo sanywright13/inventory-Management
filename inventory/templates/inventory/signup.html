@@ -1,5 +1,5 @@
 {% extends 'inventory/base.html' %}
-
+{% load crispy_forms_tags %}
 {% block title %} Sign Up Page {% endblock title%}
 
 {% block bodyContent %} 
@@ -29,7 +29,7 @@
         <form method="post">
 {% csrf_token %}
 
-{{ form }}
+{{ form | crispy}}
 <button class="btn btn-primary" type="submit" >
     Sign Up
 </button>
