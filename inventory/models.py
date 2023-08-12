@@ -6,7 +6,9 @@ class Teacher(models.Model):
     age=models.IntegerField()
 class Category(models.Model):
     name=models.CharField(max_length=200)
-    def __str__(slf):
+    class Meta:
+        verbose_name_plural='categories'
+    def __str__(self):
         return self.name
 class InventoryItem(models.Model):
     name=models.CharField(max_length=200)

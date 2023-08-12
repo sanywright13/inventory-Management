@@ -3,13 +3,17 @@ from django.http import HttpRequest
 from django.contrib.auth import login, authenticate
 from django.views.generic.base import TemplateView , View
 from .forms import UserRegisterForm
+from .models import InventoryItem
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 class Index(TemplateView):
     template_name="inventory/index.html"
-class DashboardView(View):
+
+class DashboardView(LoginRequiredMixin,View):
+    login_url = '/inventory/login/'
     def get(self,request):
-        
-        return render(request,'inventory/dashboard.html')
+        Useritmes=InventoryItem.objects.filter(user=self.request.user.id).order_by('id')
+        return render(request,'inventory/dashboard.html',{'items':Useritmes})
     def post(self,request):
         pass
         

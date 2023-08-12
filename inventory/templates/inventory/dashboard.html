@@ -8,7 +8,7 @@
 <div class="d-flex justify-content-end">
 <a hrf="#" class="btn btn-primary">+</a>
 </div>
-
+{{ itmes }}
 <table class="table table-hover table-striped">
 <thead>
 <tr>
@@ -21,6 +21,7 @@
 </tr>
 </thead>
 <tbody>
+    {% if items  %}
 <tr>
     <th scope="row">-</th>
 <td>-</td>
@@ -28,7 +29,16 @@
 <td>-</td>
 <td>-</td>
 </tr>
-</tody>
+{% endif %}
+{% for item in items %}
+<tr>
+<th scope="row">{{ item.id }}</th>
+<td>{{item.name}}</td>
+<td>{{item.quantity}}</td>
+<td>{{item.category.name}}</td>
+</tr>
+{% endfor %}
+</tbody>
 </table>
 
 </div>
