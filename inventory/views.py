@@ -6,7 +6,13 @@ from .forms import UserRegisterForm
 # Create your views here.
 class Index(TemplateView):
     template_name="inventory/index.html"
-    
+class DashboardView(View):
+    def get(self,request):
+        
+        return render(request,'inventory/dashboard.html')
+    def post(self,request):
+        pass
+        
 class SignUpView(View):
     def get(self,request):
          form=UserRegisterForm()
