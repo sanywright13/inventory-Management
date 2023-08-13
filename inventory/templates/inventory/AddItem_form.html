@@ -1,0 +1,18 @@
+
+{% extends 'inventory/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Add Item To Inventory Management{% endblock title %}
+{% include 'inventory/navbar.html' %}
+{% block bodyContent %}
+
+<div class="row">
+    <div class="col-md-4 mt-5">
+        <form method="post">
+        {% csrf_token%}
+{{ form|crispy }}
+<button class="btn btn-primary" type="submit">add item</button>
+        </form>
+    </div>
+
+</div>
+{% endblock bodyContent %}

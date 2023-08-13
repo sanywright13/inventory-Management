@@ -2,8 +2,8 @@ from django.shortcuts import render ,redirect
 from django.http import HttpRequest
 from django.contrib.auth import login, authenticate
 from django.views.generic.base import TemplateView , View
-from .forms import UserRegisterForm
-from .models import InventoryItem
+from .forms import UserRegisterForm , AddItemForm
+from .models import InventoryItem,Category
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
@@ -38,13 +38,15 @@ class SignUpView(View):
 class CreateItemView(LoginRequiredMixin,CreateView):
     template_name='inventory/AddItem_form.html'
     form_class=AddItemForm
-    success_url='/dashboard/'
+    success_url='/inventory/dashboard/'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["categories"] = Category.objects.all()
+        context['name']='sanaa'
         return context
     
     def form_valid(self,form):
+        print(form)
         form.instance.user=self.request.user
         return super().form_valid(form)
                 
