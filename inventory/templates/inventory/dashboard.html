@@ -36,6 +36,8 @@
 <td>{{item.name}}</td>
 <td>{{item.quantity}}</td>
 <td>{{item.category.name}}</td>
+<td> <a href="{%url 'inventory:item-update' item.id %}" class="btn btn-primary">Update Item</a></td>
+<td><a href="{% url 'inventory:delete-item'  item.id %}" class="btn btn-primary">Delete Item</a></td>
 </tr>
 {% endfor %}
 </tbody>

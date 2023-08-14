@@ -4,8 +4,10 @@ from django.contrib.auth import login, authenticate
 from django.views.generic.base import TemplateView , View
 from .forms import UserRegisterForm , AddItemForm
 from .models import InventoryItem,Category
-from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView , UpdateView ,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 # Create your views here.
 class Index(TemplateView):
     template_name="inventory/index.html"
@@ -49,4 +51,30 @@ class CreateItemView(LoginRequiredMixin,CreateView):
         print(form)
         form.instance.user=self.request.user
         return super().form_valid(form)
+class UpdateItem(LoginRequiredMixin,UpdateView):
+    model=InventoryItem
+    template_name='inventory/AddItem_form.html'
+    form_class=AddItemForm
+    success_url='/inventory/dashboard/'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all()
+       
+        return context
+     
+    def form_valid(self,form):
+        
+        form.instance.user=self.request.user
+        return super().form_valid(form)
+    
+class DeleteItem(LoginRequiredMixin,DeleteView):
+    #model =InventoryItem
+    template_name='inventory/DeletItem.html'
+    success_url = reverse_lazy("inventory:dashboard")
+    context_object_name='items'
+    queryset=InventoryItem.objects.all()
+    def form_valid(self,form):
+        messages.success(self.request, "The Item was deleted successfully.")
+        return super().form_valid(form)
+    
                 

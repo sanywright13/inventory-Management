@@ -1,0 +1,21 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %} Delete Item {%endblock title %}
+
+{% block bodyContent %}
+
+<div class="row">
+<div class="col-md-12 mt-5">
+<form method="post">
+    {% csrf_token %}
+
+    <h1> Are You sure you want to delete {{items.category }} ? </h1>   
+<button type="submit" class="btn btn-primary" >Submit</button>
+
+</form>
+</div>
+</div>
+
+{% include 'inventory/navbar.html  ' %}
+
+{% endblock bodyContent %}
