@@ -15,3 +15,9 @@ This is an Inventory Management System implemented using Django, HTML Bootstrap,
 - **Inventory Tracking**: Keep track of stock levels for each product and receive alerts when stock is low.
 
 - **Responsive Design**: The user interface is built using HTML Bootstrap, ensuring a responsive and mobile-friendly experience.
+## Installation
+
+1. Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/your-username/inventory-Management.git
